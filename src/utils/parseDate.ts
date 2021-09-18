@@ -1,4 +1,4 @@
-import { DateFormat } from '../shared/shapes';
+import { DateFormat } from "../types/exported";
 import { dateSplitters } from './regexes';
 
 /**

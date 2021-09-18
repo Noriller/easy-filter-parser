@@ -1,13 +1,13 @@
-import EasyFilter from './EasyFilter';
+import EasyFilterParser from './EasyFilterParser';
 import {
   DateFormat,
   OptionalParameters,
   SetupOptions,
   FilterOptions,
   TagAliases,
-} from './shared/shapes';
+} from './types/exported';
 
-export default EasyFilter;
+export default EasyFilterParser;
 export {
   DateFormat,
   OptionalParameters,

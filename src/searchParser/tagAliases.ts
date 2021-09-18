@@ -1,4 +1,5 @@
-import { ParsedPart, TagAliases, ParsedTag } from '../shared/shapes';
+import { ParsedPart, ParsedTag } from '../types/shapes';
+import { TagAliases } from "../types/exported";
 
 /**
  * addAliases is used to add aliases to the searchTree.

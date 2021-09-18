@@ -1,43 +1,3 @@
-export interface ParsedPart {
-  payload: string;
-  mode: BaseTypes;
-  childs?: ParsedPart[];
-}
-
-export type BaseTypes =
-  | 'NOT'
-  | 'OPTION'
-  | 'QUOTE'
-  | 'TAG'
-  | 'TAG_NULL'
-  | 'RANGE'
-  | 'DATE_RANGE'
-  | 'OR';
-
-export type AllTypes = BaseTypes | 'INITIAL';
-
-export interface ParsedResult {
-  search: string;
-  parsedSearch: ParsedPart[];
-}
-
-export interface ParsedOptions {
-  search: string;
-  parsedOptions: FilterOptions;
-}
-
-export interface ParsedRange extends ParsedPart {
-  range: RangePayload | DateRangePayload;
-}
-
-export interface ParsedTag extends ParsedPart {
-  tag: string;
-  aliases?: TagAliases;
-}
-
-export type RangePayload = [number, number];
-export type DateRangePayload = [Date, Date];
-
 /**
  * The Optional Parameter are used to specify
  * the default behaviors that should be used.
@@ -45,6 +5,7 @@ export type DateRangePayload = [Date, Date];
  * @remarks
  * Should be used, specially to define instantiation only options.
  */
+
 export interface OptionalParameters {
   /**
    * The default modifiers that will change the return of EasyFilter.
@@ -91,10 +52,10 @@ export interface OptionalParameters {
    */
   tagAliases?: TagAliases;
 }
-
 /**
  * Optional options that can be passed in the instantiation.
  */
+
 export interface SetupOptions {
   /**
    * The date format used in the source.
@@ -138,8 +99,6 @@ export interface FilterOptions extends SetupOptions {
 }
 
 export type DateFormat = 'YYYY-MM-DD' | 'DD-MM-YYYY' | 'MM-DD-YYYY';
-
-export type NOT_Exclusion = 'NOT_Exclusion';
 
 export interface TagAliases {
   [key: string]: string[];

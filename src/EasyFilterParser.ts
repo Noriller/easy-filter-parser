@@ -1,16 +1,16 @@
-import { shouldReturn } from './filterCore/shouldReturn';
 import { searchParser } from './searchParser/searchParser';
 import { addAliases } from './searchParser/tagAliases';
 import {
   ParsedPart,
+} from './types/shapes';
+import {
   SetupOptions,
   TagAliases,
-  OptionalParameters,
-} from './shared/shapes';
-import { removeDiacritics } from './utils/removeDiacritics';
+  OptionalParameters
+} from "./types/exported";
 
 /**
- * EasyFilter is a minimal setup filter.
+ * EasyFilterParser is a minimal setup filter.
  *
  * The minimal setup is just passing the source as an array.
  *
@@ -20,7 +20,7 @@ import { removeDiacritics } from './utils/removeDiacritics';
  * @example
  * ```js
   // Minimal example:
-  const filter = EasyFilter(sourceArray)
+  const filter = EasyFilterParser()
   const filteredResult = filter.search('your query')
  * ```
  * @description
@@ -29,7 +29,7 @@ import { removeDiacritics } from './utils/removeDiacritics';
  * @example
  * ```js
   // Using All Options:
-  const filter = EasyFilter(sourceArray, {
+  const filter = EasyFilterParser({
     filterOptions: {
       dateFormat: 'DD-MM-YYYY',
       normalize: true,
@@ -42,10 +42,10 @@ import { removeDiacritics } from './utils/removeDiacritics';
   })
  * ```
  */
-export default function EasyFilter(
-  source: Array<unknown>,
-  { filterOptions = {}, tagAliases = {} }: OptionalParameters = {},
-) {
+export default function EasyFilterParser({
+  filterOptions = {},
+  tagAliases = {},
+}: OptionalParameters = {}) {
   return {
     /**
      * Call `search` with your query string to filter the source array.
@@ -57,13 +57,12 @@ export default function EasyFilter(
      *
      * @see README for everything that can be passed in the query string.
      */
-    search: (string) => search(string, source, filterOptions, tagAliases),
+    search: (string) => search(string, filterOptions, tagAliases),
   };
 }
 
 function search(
   string: string,
-  source: Array<unknown>,
   filterOptions: SetupOptions,
   tagAliases: TagAliases,
 ) {
@@ -77,41 +76,5 @@ function search(
     });
   }
 
-  let maxReturns =
-    options?.limit > 0 && options?.limit <= source.length
-      ? options?.limit
-      : source.length;
-
-  const returnAccumulator = [];
-
-  for (let i = 0; i < source.length; i++) {
-    const object = options?.normalize
-      ? JSON.parse(removeDiacritics(JSON.stringify(source[i])))
-      : source[i];
-
-    const result = shouldReturn({
-      object,
-      searchTree: finalTree,
-      filterOptions: options,
-    });
-
-    if (result) {
-      maxReturns--;
-      const objectToReturn = options?.indexing
-        ? addIndexing(source[i], <number>result)
-        : source[i];
-      returnAccumulator.push(objectToReturn);
-    }
-
-    if (!maxReturns) i = source.length;
-  }
-
-  return returnAccumulator;
-}
-
-function addIndexing(sourceObj: unknown, indexValue: number): unknown {
-  const returnObject: any = Object.assign({}, sourceObj);
-  returnObject._EasyFilterIndex = indexValue;
-
-  return returnObject;
+  return { options, searchTree: finalTree };
 }

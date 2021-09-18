@@ -1,4 +1,4 @@
-import { FilterOptions } from '../shared/shapes';
+import { FilterOptions } from "../types/exported";
 import { removeDiacritics } from '../utils/removeDiacritics';
 import { optionsParse } from './optionsParse/optionsParse';
 import { parserPipeline } from './parserPipeline';

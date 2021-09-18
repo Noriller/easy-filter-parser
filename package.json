@@ -43,9 +43,9 @@
   },
   "author": "Bruno Noriller <brunonoriller@gmail.com> (https://github.com/Noriller)",
   "bugs": {
-    "url": "https://github.com/Noriller/easy-filter/issues"
+    "url": "https://github.com/Noriller/easy-filter-parser/issues"
   },
-  "homepage": "https://github.com/Noriller/easy-filter",
+  "homepage": "https://github.com/Noriller/easy-filter-parser",
   "keywords": [
     "filter",
     "filter-lists",
@@ -88,7 +88,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Noriller/easy-filter.git"
+    "url": "git+https://github.com/Noriller/easy-filter-parser.git"
   },
   "files": [
     "dist/"

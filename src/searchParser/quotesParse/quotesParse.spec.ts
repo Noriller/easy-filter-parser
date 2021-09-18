@@ -1,4 +1,4 @@
-import { ParsedPart } from '../../shared/shapes';
+import { ParsedPart } from '../../types/shapes';
 import { quotesParse } from './quotesParse';
 
 describe('quotesParse', () => {

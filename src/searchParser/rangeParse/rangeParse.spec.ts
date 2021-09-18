@@ -1,4 +1,4 @@
-import { ParsedRange } from '../../shared/shapes';
+import { ParsedRange } from '../../types/shapes';
 import { rangeParse } from './rangeParse';
 
 describe('rangeParse', () => {

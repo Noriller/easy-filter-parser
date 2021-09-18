@@ -1,9 +1,9 @@
 import {
   AllTypes,
-  FilterOptions,
   ParsedPart,
   ParsedResult,
-} from '../shared/shapes';
+} from '../types/shapes';
+import { FilterOptions } from "../types/exported";
 import { dateRangeParse } from './dateRangeParse/dateRangeParse';
 import { notParse } from './notParse/notParse';
 import { orParse } from './orParse/orParse';

@@ -1,4 +1,4 @@
-import { ParsedPart, ParsedResult } from '../../shared/shapes';
+import { ParsedPart, ParsedResult } from '../../types/shapes';
 import { cleanString } from '../../utils/cleanString';
 
 export function notParse(search: string): ParsedResult {

@@ -1,9 +1,8 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import EasyFilter from './EasyFilter';
-const poke10 = require('../__Test__/pokeAPISlice10.json');
+import EasyFilterParser from './EasyFilterParser';
 
 describe('EasyFilter', () => {
-  const ef = EasyFilter(poke10);
+  const ef = EasyFilterParser();
 
   it('should search a simple search', () => {
     const result = ef.search('bulba');
@@ -56,25 +55,25 @@ describe('EasyFilter', () => {
     };
 
     it('should search using the aliases for a full tag', () => {
-      const efta = EasyFilter(poke10, { tagAliases });
+      const efta = EasyFilterParser({ tagAliases });
       const result = efta.search('fullTag:swords-dance');
       expect(result).toHaveLength(6);
     });
 
     it('should search using the aliases for a partial tag', () => {
-      const efta = EasyFilter(poke10, { tagAliases });
+      const efta = EasyFilterParser({ tagAliases });
       const result = efta.search('moves.*.lastPartTag:swords-dance');
       expect(result).toHaveLength(6);
     });
 
     it('should search using multiple aliases', () => {
-      const efta = EasyFilter(poke10, { tagAliases });
+      const efta = EasyFilterParser({ tagAliases });
       const result = efta.search('firstPartTag.lastPartTag:swords-dance');
       expect(result).toHaveLength(6);
     });
 
     it('should search using one aliases with multiple tags', () => {
-      const efta = EasyFilter(poke10, { tagAliases });
+      const efta = EasyFilterParser({ tagAliases });
       expect(efta.search('aliasesWithMultipleValues:2')).toHaveLength(1);
       expect(efta.search('aliasesWithMultipleValues:3')).toHaveLength(10);
     });
