@@ -23,14 +23,12 @@ exec(`npx rimraf out/*`);
 const packageJSON = require('./package.json');
 
 // copy all necessary files
-exec(
-  `copyfiles -a -f ${packageJSON.files} README.md CHANGELOG.md LICENSE ${packageDirectory}`,
-);
+exec(`copyfiles README.md CHANGELOG.md LICENSE ${packageDirectory}`);
+exec(`copyfiles -u 1 "dist/**/*" ${packageDirectory}`);
 
 // modify package.json
 Reflect.deleteProperty(packageJSON, 'scripts');
 Reflect.deleteProperty(packageJSON, 'devDependencies');
-Reflect.deleteProperty(packageJSON, 'files');
 // and save it in temp folder
 fs.writeFileSync(
   `${packageDirectory}/package.json`,

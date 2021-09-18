@@ -17,7 +17,8 @@
     "prebuild:prod": "yarn cleanDist",
     "build:prod": "tsc && tsc -p ./tsconfig.nocomments.json",
     "prepackPublish": "yarn build:prod",
-    "packPublish": "node buildPack.js && yarn publish ./out/*.tgz"
+    "packPublish": "node buildPack.js",
+    "packPublish:publish": "yarn packPublish && yarn publish ./out/*.tgz"
   },
   "dependencies": {},
   "devDependencies": {
@@ -90,8 +91,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Noriller/easy-filter-parser.git"
-  },
-  "files": [
-    "dist/*"
-  ]
+  }
 }
