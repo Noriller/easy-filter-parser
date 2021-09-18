@@ -3,8 +3,8 @@
   "private": false,
   "version": "0.0.2",
   "description": "EasyFilter-Parser is a lightweight, zero dependencies, minimal setup, intuitive and powerful parser used in the EasyFilter trilogy packages.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "index.js",
+  "types": "index.d.ts",
   "license": "MIT",
   "scripts": {
     "lint": "eslint --ignore-path .gitignore --fix .",
@@ -16,7 +16,8 @@
     "build": "tsc",
     "prebuild:prod": "yarn cleanDist",
     "build:prod": "tsc && tsc -p ./tsconfig.nocomments.json",
-    "prepublishOnly": "yarn build:prod"
+    "dryPublish": "yarn build:prod && npm publish --dry-run ./dist",
+    "coisa": "node buildPack.js"
   },
   "dependencies": {},
   "devDependencies": {
@@ -27,6 +28,7 @@
     "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
+    "copyfiles": "^2.4.1",
     "eslint": "^7.22.0",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-prettier": "^3.3.1",
@@ -90,6 +92,6 @@
     "url": "git+https://github.com/Noriller/easy-filter-parser.git"
   },
   "files": [
-    "dist/"
+    "dist/*"
   ]
 }
