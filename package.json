@@ -55,8 +55,7 @@
     "match",
     "matching-engine",
     "search",
-    "search-engine",
-    "sort"
+    "search-engine"
   ],
   "jest": {
     "moduleFileExtensions": [

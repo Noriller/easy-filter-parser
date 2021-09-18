@@ -1,43 +1,47 @@
-# EasyFilter
+# EasyFilter-Parser
 
-🎈 Welcome to **EasyFilter**! 👋
+🎈 Welcome to **EasyFilter-Parser**! 👋
 
-EasyFilter is a lightweight ☁️, zero dependencies 🚢, minimal setup 😮, intuitive 😃 and powerful 💪 filter for all your filter needs.
+EasyFilter-Parser is a lightweight ☁️, zero dependencies 🚢, minimal setup 😮, intuitive 😃 and powerful 💪 parser used in the EasyFilter trilogy packages.
 
 It's as easy as this:
 ```js
-  const filter = EasyFilter(sourceArray)
-  const filteredResult = filter.search('your query')
+  const parser = EasyFilterParser()
+  const { options, searchTree } = parser.search('your query')
 ```
 
 ## Get Started
 
 ### Use your choice of package manager
 
-`npm install @noriller/easy-filter`
+```
+npm install @noriller/easy-filter-parser
+```
 
-`yarn add @noriller/easy-filter`
+```
+yarn add @noriller/easy-filter-parser
+```
 
 ### Then import it with the syntax of your choice
 
 ```js
-import EasyFilter from '@noriller/easy-filter'
+import EasyFilter-Parser from '@noriller/easy-filter-parser'
 ```
 
 ```js
-const EasyFilter = require('@noriller/easy-filter')
+const EasyFilter-Parser = require('@noriller/easy-filter-parser')
 ```
 
 ### Finally, to actually use it
 
 ```js
-  const filter = EasyFilter(sourceArray)
-  const filteredResult = filter.search('your query')
+  const parser = EasyFilterParser()
+  const { options, searchTree } = parser.search('your query')
 ```
 
 That's it! 🧙‍♂️
 
-Check out the section [EasyFilter Operators](#easyfilter-operators) to see all that you can pass to the filter, the real ✨magic✨ is there!
+Check out the section [EasyFilter-Parser Operators](#easyfilter-parser-operators) to see all that you can pass to the filter, the real ✨magic✨ is there!
 
 ```js
 ✨ Magic like turning this:
@@ -52,7 +56,7 @@ Check out the section [EasyFilter Operators](#easyfilter-operators) to see all t
 Ok. If you need more options, here's the full setup you can do using all options available:
 
 ```js
-const filter = EasyFilter(sourceArray, {
+const parser = EasyFilterParser({
     filterOptions: {
       dateFormat: 'DD-MM-YYYY',
       normalize: true,
@@ -64,12 +68,12 @@ const filter = EasyFilter(sourceArray, {
     }
   })
 
-const filteredResult = filter.search('your query')
+const { options, searchTree } = parser.search('your query')
 ```
 
 It's still that simple. 👨‍💻
 
-All the options will be explained in [EasyFilter Options](#easyfilter-options).
+All the options will be explained in [EasyFilter-Parser Options](#easyfilter-parser-options).
 And most of them you can pass in the `search` 🔎 string when you need.
 
 ## Inspirations and motivation
@@ -107,9 +111,9 @@ And if you're seeing yourself here... then you probably should use it.
 
 * If something like `Object.keys(object).join(' ').includes('string')` or `dataSource.filter(x => x.attribute === 'something')` is enough for your need, you probably wouldn't want to bother using it.
 
-* EasyFilter is not a fuzzy filter (at least not yet, who knows? 🤔), so if you're expecting clumsy typers searching your data... they might have a hard time.
+* EasyFilter-Parser is not a fuzzy filter (at least not yet, who knows? 🤔), so if you're expecting clumsy typers searching your data... they might have a hard time.
 
-* EasyFilter also don't care about upper or lowercase and/or ordering of the words in your queries (again: at least not yet), so if that's important... I'm sorry? 🙇‍♂️
+* EasyFilter-Parser also don't care about upper or lowercase and/or ordering of the words in your queries (again: at least not yet), so if that's important... I'm sorry? 🙇‍♂️
 
 * This one is a little relative: if you need maximum performance... well, test it out if it work for you! The more options you use and the more your data objects branches out on objects upon objects... the more time it needs to traverse everything. (And even then, I believe you can use it for prototyping and/or as a crutch while you make your own custom filter. Don't worry, I understand. 😉)
 
@@ -117,9 +121,9 @@ The trade off is clear: we give you a powerful engine that will return the data 
 
 For your everyday use, you're probably fine and your users will love it. 😎
 
-(As a side note, I would love to know how EasyFilter fare against any other solution you might try. ❤😍❤)
+(As a side note, I would love to know how EasyFilter-Parser fare against any other solution you might try. ❤😍❤)
 
-## EasyFilter Operators
+## EasyFilter-Parser Operators
 
 Most of this should be intuitive for most users... that's what I was aiming for after all. 🧐
 ### OR query
@@ -130,7 +134,7 @@ To be a match, the data needs only to match any of them to be returned.
 
 #### OR Example:
 ```js
-filter.search('word1 word2 tag:value "quoted value"')
+parser.search('word1 word2 tag:value "quoted value"')
 ```
 `word1`, `word2`, `tag:value` and `"quoted value"` each become separated entities and a match of any one of those will return.
 
@@ -138,7 +142,7 @@ filter.search('word1 word2 tag:value "quoted value"')
 
 Anything inside quotes (either double `"` or single `'`) will be treated as one entity.
 
-EasyFilter relies heavily on recursion and this one entity will be split into multiple entities, following those entities rules.
+EasyFilter-Parser relies heavily on recursion and this one entity will be split into multiple entities, following those entities rules.
 
 To be a match, the data must get a match from each subquery inside quotes.
 
@@ -150,7 +154,7 @@ In case of nested `TAG` and `AND` queries, the nested quote must not match the p
 
 #### AND Example:
 ```js
-filter.search('"quoted value tag:value"')
+parser.search('"quoted value tag:value"')
 ```
 `quoted`, `value` and `tag:value` first are an `AND` query and will match only if all of the subqueries match.
 
@@ -173,7 +177,7 @@ A `TAG` query can contain: `OR`, `AND` and then `NULL` and `RANGE`/`DATE_RANGE` 
 #### Types of TAG queries with Examples:
 ##### TAG - Simple
 ```js
-filter.search('tag:value')
+parser.search('tag:value')
 ```
 Just the `TAG` followed by a colon and the `value`.
 
@@ -181,19 +185,19 @@ Just the `TAG` followed by a colon and the `value`.
 
 ##### TAG - OR
 ```js
-filter.search('tag:(value1 value2 value3)')
+parser.search('tag:(value1 value2 value3)')
 ```
 By using brackets, you can have an `OR` query with multiple values at once.
 
 ##### TAG - AND
 ```js
-filter.search('tag:"value1 value2 value3"')
+parser.search('tag:"value1 value2 value3"')
 ```
 By using quotes (single/double), you can have an `AND` query.
 
 ##### TAG - Null Values
 ```js
-filter.search('tag:null tag:nil tag:none tag:nothing')
+parser.search('tag:null tag:nil tag:none tag:nothing')
 ```
 By passing, alone, any of the words: `NULL`, `NIL`, `NONE` or `NOTHING` as the value of the `TAG`, it will match only if the `key` doesn't exist in the object (or if the key is `null` or `undefined`).
 
@@ -201,7 +205,7 @@ By passing, alone, any of the words: `NULL`, `NIL`, `NONE` or `NOTHING` as the v
 
 ##### TAG - Chaining Tags
 ```js
-filter.search('tag.subTag.thirdTag:value')
+parser.search('tag.subTag.thirdTag:value')
 ```
 You can chain tags together using a `.` (full stop/period).
 
@@ -209,9 +213,9 @@ This would be equivalent to nested `TAGs`. (Nested tags aren't supported.)
 
 ##### TAG - Arrays
 ```js
-filter.search('tag.0:value tag2.*.subTag:value')
+parser.search('tag.0:value tag2.*.subTag:value')
 ```
-While the most common use case for EasyFilter would be, indeed, common objects (think JSON Objects with key/value pairs), arrays are supported.
+While the most common use case for EasyFilter-Parser would be, indeed, common objects (think JSON Objects with key/value pairs), arrays are supported.
 
 The main difference is that the `key` they use are numerical and ordered.
 
@@ -223,7 +227,7 @@ So, if the position in the array matters, use the index. Otherwise, use `*` (ast
 
 ##### TAG - RANGE
 ```js
-filter.search('tag:range(0,5)')
+parser.search('tag:range(0,5)')
 ```
 By passing, alone, the operator `RANGE()` you can pass one or two arguments that will filter based on the numbers.
 
@@ -235,7 +239,7 @@ Passing only one argument sets only the lower bound. To set only the upper bound
 
 ##### TAG - DATE_RANGE
 ```js
-filter.search('tag:dateRange(2020-05-01, 2021-09-05)')
+parser.search('tag:dateRange(2020-05-01, 2021-09-05)')
 ```
 By passing, alone, the operator `DATERANGE()` you can pass one or two arguments that will filter based on the dates.
 
@@ -265,11 +269,11 @@ All `NOT` are parsed at the same level, nesting it inside other queries will jus
 
 #### NOT Example:
 ```js
-filter.search('not("quoted value tag:value")')
+parser.search('not("quoted value tag:value")')
 ```
 Any element with `quoted`, `value` and `tag:value` will not be returned.
 
-### EasyFilter Options
+### EasyFilter-Parser Options
 
 There's three types of options:
 * Those that can be passed any time:
@@ -300,16 +304,16 @@ The formats can be: `YYYY-MM-DD`, `DD-MM-YYYY` and `MM-DD-YYYY` while the separa
 
 ###### DateFormat Example
 ```js
-filter.search('tag:dateRange(30-12-2020,30-12-2022) option(dateFormat:DD.MM.YYYY)')
+parser.search('tag:dateRange(30-12-2020,30-12-2022) option(dateFormat:DD.MM.YYYY)')
 ```
 
 ##### NORMALIZE
 
-When the `NORMALIZE` option is used, `EasyFilter` will discard/ignore every and all diacritics when making comparisons. It's FALSE by default.
+When the `NORMALIZE` option is used, `EasyFilter-Parser` will discard/ignore every and all diacritics when making comparisons. It's FALSE by default.
 
 This means that with `NORMALIZE`: `Crème brûlée` is equal to `Creme brulee`.
 
-`EasyFilter` uses the [`string.normalize('NFD')`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize) javascript API to decompose the strings and then remove all [Combining Diacritical Marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
+`EasyFilter-Parser` uses the [`string.normalize('NFD')`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/normalize) javascript API to decompose the strings and then remove all [Combining Diacritical Marks](https://en.wikipedia.org/wiki/Combining_Diacritical_Marks).
 
 `NORMALIZE` uses a `boolean` flag, and when used in `OPTIONS` alone like `option(normalize)` it will assume the TRUE value, but you can explicitly use: `normalize:true`.
 
@@ -317,15 +321,15 @@ You can also use `normalize:false` to disable a [setup default](#filter-options)
 
 ##### INDEXING
 
-When the `INDEXING` option is used, `EasyFilter` will use a numerical ranking system and if there's a match, it will return a copy of the element with an additional key `_EasyFilterIndex` that will have a "relevance score" that you can use to sort the results. It's FALSE by default.
+When the `INDEXING` option is used, `EasyFilter-Parser` will use a numerical ranking system and if there's a match, it will return a copy of the element with an additional key `_EasyFilter-ParserIndex` that will have a "relevance score" that you can use to sort the results. It's FALSE by default.
 
 `INDEXING` uses a `boolean` flag, and when used in `OPTIONS` alone like `option(index)` or `option(indexing)` it will assume the TRUE value, but you can explicitly use: `index:true`.
 
 You can also use `normalize:false` to disable a [setup default](#filter-options) indexing for a specific query.
 
-###### How it indexing works in EasyFilter
+###### How it indexing works in EasyFilter-Parser
 
-`EasyFilter` gives a number based on the types of queries and multiplies the results returned by nested queries.
+`EasyFilter-Parser` gives a number based on the types of queries and multiplies the results returned by nested queries.
 * OR = 1
 * AND = 3
 * TAG = 5
@@ -335,7 +339,7 @@ This way, using more generic queries, those with the more specific parameters wi
 
 ##### LIMIT
 
-When the `LIMIT` option is used, `EasyFilter` will return only the `LIMIT` number of results. It's Zero/FALSE by default.
+When the `LIMIT` option is used, `EasyFilter-Parser` will return only the `LIMIT` number of results. It's Zero/FALSE by default.
 
 `LIMIT` needs a `number` value, when used in `OPTIONS` you need to also pass a `number` value: `option(limit:1)`.
 
@@ -373,7 +377,7 @@ Our `data sources` might not always be the most user friendly, or something impo
 ###### Aliases Examples
 
 ```js
-const filter = EasyFilter(sourceArray, {
+const filter = EasyFilterParser(sourceArray, {
     tagAliases: {
       // if you want more friendly aliases
       data: ['DT_0001X420'],
@@ -399,10 +403,10 @@ const filter = EasyFilter(sourceArray, {
 
 Here's something you can expect in the future:
 
-* New objective: `EasyFilter` will now become a trilogy! They will all share the same parser, so you will be able to filter values already buffered and values in your databases all the same, simple way.
+* New objective: `EasyFilter-Parser` will now become a trilogy! They will all share the same parser, so you will be able to filter values already buffered and values in your databases all the same, simple way.
   * This, which filter values in objects.
-  * `EasyFilter-SQL` - That will create SQL queries.
-  * `EasyFilter-Mongo` - That will create Mongo queries.
+  * `EasyFilter-Parser-SQL` - That will create SQL queries.
+  * `EasyFilter-Parser-Mongo` - That will create Mongo queries.
 * (TBD) Streams support ⚡: be it from an API or from a data source, data usually comes as a stream. If the Javascript Engine can handle streaming fine, why wait for it to buffer everything?
 
 ## There's a problem or it could be better
