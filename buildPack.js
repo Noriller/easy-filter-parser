@@ -11,7 +11,10 @@ const packageDirectory = `${tempDirectory}/package`;
 fs.mkdirSync(packageDirectory);
 
 // get current directory
-const currentDirectory = exec('pwd').toString().trim();
+const currentDirectory = exec('pwd')
+  .toString()
+  .replace(/(\r\n|\n|\r)/gm, '')
+  .trim();
 
 // clean output folder
 exec(`npx rimraf out/*`);
@@ -27,15 +30,16 @@ exec(
 // modify package.json
 Reflect.deleteProperty(packageJSON, 'scripts');
 Reflect.deleteProperty(packageJSON, 'devDependencies');
+Reflect.deleteProperty(packageJSON, 'files');
 // and save it in temp folder
 fs.writeFileSync(
   `${packageDirectory}/package.json`,
   JSON.stringify(packageJSON, null, 2),
 );
 
-// pack everything
+// pack everything and send to out folder
 exec(
-  `cd ${packageDirectory} && yarn pack --filename ${currentDirectory}/out/test.tgz`,
+  `cd ${packageDirectory} && yarn pack --out %s-%v.tgz && npx copyfiles *.tgz ${currentDirectory}/out`,
 );
 
 // clean after

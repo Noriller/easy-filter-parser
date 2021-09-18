@@ -16,8 +16,8 @@
     "build": "tsc",
     "prebuild:prod": "yarn cleanDist",
     "build:prod": "tsc && tsc -p ./tsconfig.nocomments.json",
-    "dryPublish": "yarn build:prod && npm publish --dry-run ./dist",
-    "coisa": "node buildPack.js"
+    "prepackPublish": "yarn build:prod",
+    "packPublish": "node buildPack.js && yarn publish ./out/*.tgz"
   },
   "dependencies": {},
   "devDependencies": {
