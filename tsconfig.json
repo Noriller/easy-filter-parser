@@ -16,5 +16,6 @@
     "incremental": false,
     "noEmit": false,
     "noEmitHelpers": false
-  }
+  },
+  "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]
 }
