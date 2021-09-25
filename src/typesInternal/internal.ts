@@ -16,8 +16,6 @@ export type AllTypes = BaseTypes | 'INITIAL';
 export type RangePayload = [number, number];
 export type DateRangePayload = [Date, Date];
 
-export type NOT_Exclusion = 'NOT_Exclusion';
-
 export interface ParsedResult {
   search: string;
   parsedSearch: ParsedPart[];
