@@ -1,7 +1,7 @@
 {
   "name": "@noriller/easy-filter-parser",
   "private": false,
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "EasyFilter-Parser is a lightweight, zero dependencies, minimal setup, intuitive and powerful parser used in the EasyFilter trilogy packages.",
   "main": "index.js",
   "types": "index.d.ts",
@@ -18,6 +18,7 @@
     "build:prod": "tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.nocomments.json",
     "prepackPublish": "yarn build:prod",
     "packPublish": "node buildPack.js",
+    "packPublish:dryRun": "yarn packPublish && npm publish ./out/*.tgz --dry-run",
     "packPublish:publish": "yarn packPublish && yarn publish ./out/*.tgz"
   },
   "dependencies": {},
