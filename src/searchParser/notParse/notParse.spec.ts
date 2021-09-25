@@ -1,4 +1,4 @@
-import { ParsedPart } from '../../types/shapes';
+import { ParsedPart } from '../../types';
 import { notParse } from './notParse';
 
 describe('notParse', () => {

@@ -1,4 +1,5 @@
-import { ParsedResult, ParsedTag } from '../../types/shapes';
+import { ParsedTag } from '../../types';
+import { ParsedResult } from '../../typesInternal/internal';
 import { cleanString } from '../../utils/cleanString';
 
 export function tagParse(search: string): ParsedResult {
@@ -12,7 +13,7 @@ export function tagParse(search: string): ParsedResult {
    * * Where [tag] -> can be any word
    */
   const tagPartRegexAloneBracketQuotes =
-    /(?<tags>\S+:(?<tagvalue>(?<quotetag>["']).*?\k<quotetag>|\((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*\)|.*?(?=(\s|$))))/gi;
+    /(?<tags>\S+:(?<tagvalue>(?<quotetag>["']).*?\k<quotetag>|\((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*\)|(range|daterange)\(.*?\)|.*?(?=(\s|$))))/gi;
 
   const tagPartsFound = search.match(tagPartRegexAloneBracketQuotes) || false;
 

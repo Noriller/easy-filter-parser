@@ -1,4 +1,4 @@
-import { ParsedPart } from '../../types/shapes';
+import { ParsedPart } from '../../types';
 import { orParse } from './orParse';
 
 describe('orParse', () => {

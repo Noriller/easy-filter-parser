@@ -45,7 +45,7 @@ describe('EasyFilter', () => {
     });
   });
 
-  it('should search using ranges', () => {
+  it('should search using range', () => {
     const result = ef.search('id:range(1,3)');
     expect(result).toEqual({
       options: {},
@@ -58,6 +58,29 @@ describe('EasyFilter', () => {
           mode: 'TAG',
           payload: 'range(1,3)',
           tag: 'id',
+        },
+      ],
+    });
+  });
+
+  it('should search using dateRange', () => {
+    const result = ef.search('dates:dateRange(2020-05-01, 2021-09-05)');
+    expect(result).toEqual({
+      options: {},
+      searchTree: [
+        {
+          aliases: {},
+          childs: [
+            {
+              childs: undefined,
+              mode: 'DATE_RANGE',
+              payload: null,
+              range: [new Date('2020-05-01'), new Date('2021-09-05')],
+            },
+          ],
+          mode: 'TAG',
+          payload: 'dateRange(2020-05-01, 2021-09-05)',
+          tag: 'dates',
         },
       ],
     });

@@ -1,4 +1,4 @@
-import { DateFormat } from "../types/exported";
+import { DateFormat } from '../typesInternal/exported';
 import { dateSplitters } from './regexes';
 
 /**

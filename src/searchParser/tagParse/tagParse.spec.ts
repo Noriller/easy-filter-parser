@@ -1,4 +1,4 @@
-import { ParsedTag } from '../../types/shapes';
+import { ParsedTag } from '../../types';
 import { tagParse } from './tagParse';
 
 describe('tagParse', () => {

@@ -1,6 +1,6 @@
 import { parseStringToBoolean } from '../../utils/parseStringToBoolean';
-import { ParsedOptions } from '../../types/shapes';
-import { DateFormat, FilterOptions } from "../../types/exported";
+import { ParsedOptions } from '../../typesInternal/internal';
+import { DateFormat, FilterOptions } from '../../typesInternal/exported';
 import { cleanString } from '../../utils/cleanString';
 import {
   dateSplittersGlobal,
