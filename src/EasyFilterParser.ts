@@ -4,9 +4,9 @@ import { ParsedPart } from './types/shapes';
 import { SetupOptions, TagAliases, OptionalParameters } from './types/exported';
 
 /**
- * EasyFilterParser is a minimal setup filter.
+ * EasyFilterParser is a minimal setup parser.
  *
- * The minimal setup is just passing the source as an array.
+ * The minimal setup is just making a instance.
  *
  * After that, call `search` passing your query string and use the result.
  *
@@ -44,10 +44,7 @@ export default function EasyFilterParser({
     /**
      * Call `search` with your query string to filter the source array.
      * @param string - Your query string.
-     * @returns the filtered source array.
-     *
-     * @remarks
-     * Returns objects with the reference of the source unless using indexing.
+     * @returns the options and the parsed query tree.
      *
      * @see README for everything that can be passed in the query string.
      */
