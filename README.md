@@ -631,6 +631,92 @@ parse.search('data.address.name:something')
 }
 ```
 
+## What else is there?
+
+### Utils
+
+Import with:
+```js
+import { removeDiacritics, cleanString, parseDate } from '@noriller/easy-filter-parser/utils'
+```
+OR
+```js
+const { removeDiacritics, cleanString, parseDate } = require('@noriller/easy-filter-parser/utils')
+```
+
+Inside there's also utils that will be used on the other packages (and that you can use too):
+#### removeDiacritics
+
+Use to remove diacritics from strings:
+
+```js
+removeDiacritics("Crème brûlée")
+// returns: "Creme brulee"
+```
+#### cleanString
+
+ Takes a string to be cleaned, trims it and removes double spaces.
+
+ Then, if a removeString is provided, it also removes it from the stringToClean.
+
+```js
+cleanString('  string   dirty to be   cleaned  ', '   dirty   to   be   ')
+ // returns: "string cleaned"
+```
+#### parseDate
+
+Expect a string that should be a date and a `DateFormat` to return a [Date.UTC](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/UTC) date.
+
+If no `DateFormat` is specified, it returns the date as passed.
+
+```js
+parseDate('05-11-2020', "DD-MM-YYYY"); // returns the equivalent date as: '2020-11-05'
+parseDate('05-11-2020', "MM-DD-YYYY"); // returns the equivalent date as: '2020-05-11'
+parseDate('2020-11-05'); // just returns: '2020-11-05'
+```
+
+### Types
+
+Types you use to instantiate `EasyFilterParser` are avaiable alongside the main import.
+
+Import with:
+```js
+import EasyFilterParser, {
+  DateFormat,
+  OptionalParameters,
+  SetupOptions,
+  FilterOptions,
+  TagAliases,
+} from '@noriller/easy-filter-parser/types/shapes'
+```
+OR
+```js
+const EasyFilterParser, {
+  DateFormat,
+  OptionalParameters,
+  SetupOptions,
+  FilterOptions,
+  TagAliases,
+} = require('@noriller/easy-filter-parser/types/shapes')
+```
+
+Returns of the `search` method are avaiable by importing from:
+```js
+import {
+  ParsedPart,
+  ParsedRange,
+  ParsedTag,
+} from '@noriller/easy-filter-parser/types'
+```
+OR
+```js
+const {
+  ParsedPart,
+  ParsedRange,
+  ParsedTag,
+} = require('@noriller/easy-filter-parser/types')
+```
+
 ## What's next?
 
 Here's something you can expect in the future:
