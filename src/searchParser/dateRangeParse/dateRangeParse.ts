@@ -3,7 +3,7 @@ import {
   DateRangePayload,
   ParsedRange,
 } from '../../types/shapes';
-import { DateFormat } from "../../types/exported";
+import { DateFormat } from '../../types/exported';
 import { cleanString } from '../../utils/cleanString';
 import { middleBetweenBracketsRegex } from '../../utils/regexes';
 import { parseDate } from '../../utils/parseDate';
@@ -24,7 +24,8 @@ export const dateRangeParse =
         .map((dateRange) => {
           const [min, max] = dateRange
             .match(middleBetweenBracketsRegex)[0]
-            .split(',');
+            .split(',')
+            .map((x) => x.trim());
 
           const minDate = new Date(parseDate(min, dateOptions)).getTime();
           const maxDate = new Date(parseDate(max, dateOptions)).getTime();

@@ -1,9 +1,5 @@
-import {
-  AllTypes,
-  ParsedPart,
-  ParsedResult,
-} from '../types/shapes';
-import { FilterOptions } from "../types/exported";
+import { AllTypes, ParsedPart, ParsedResult } from '../types/shapes';
+import { FilterOptions } from '../types/exported';
 import { dateRangeParse } from './dateRangeParse/dateRangeParse';
 import { notParse } from './notParse/notParse';
 import { orParse } from './orParse/orParse';

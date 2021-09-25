@@ -12,7 +12,7 @@ export function tagParse(search: string): ParsedResult {
    * * Where [tag] -> can be any word
    */
   const tagPartRegexAloneBracketQuotes =
-    /(?<tags>\S+:(?<tagvalue>(?<quotetag>["']).*?\k<quotetag>|\((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*\)|.*?(?=(\s|$))))/gi;
+    /(?<tags>\S+:(?<tagvalue>(?<quotetag>["']).*?\k<quotetag>|\((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*\)|(range|daterange)\(.*?\)|.*?(?=(\s|$))))/gi;
 
   const tagPartsFound = search.match(tagPartRegexAloneBracketQuotes) || false;
 
