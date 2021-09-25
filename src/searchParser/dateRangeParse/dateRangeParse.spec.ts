@@ -1,4 +1,4 @@
-import { ParsedRange } from '../../types/shapes';
+import { ParsedRange } from '../../types';
 import { dateRangeParse } from './dateRangeParse';
 
 describe('dateRangeParse', () => {

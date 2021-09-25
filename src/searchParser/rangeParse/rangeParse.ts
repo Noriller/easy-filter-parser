@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { ParsedRange, ParsedResult, RangePayload } from '../../types/shapes';
+import { ParsedRange } from '../../types';
+import { ParsedResult, RangePayload } from "../../typesInternal/internal";
 import { cleanString } from '../../utils/cleanString';
 import { middleBetweenBracketsRegex } from '../../utils/regexes';
 

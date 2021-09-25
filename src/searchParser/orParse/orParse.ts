@@ -1,5 +1,6 @@
 /* eslint-disable prettier/prettier */
-import { ParsedPart, ParsedResult } from '../../types/shapes';
+import { ParsedPart } from '../../types';
+import { ParsedResult } from "../../typesInternal/internal";
 import { cleanString } from '../../utils/cleanString';
 
 export function orParse(search: string): ParsedResult {

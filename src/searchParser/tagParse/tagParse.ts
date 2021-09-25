@@ -1,4 +1,5 @@
-import { ParsedResult, ParsedTag } from '../../types/shapes';
+import { ParsedTag } from '../../types';
+import { ParsedResult } from '../../typesInternal/internal';
 import { cleanString } from '../../utils/cleanString';
 
 export function tagParse(search: string): ParsedResult {

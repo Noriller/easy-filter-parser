@@ -1,4 +1,4 @@
-import { FilterOptions } from "../../types/exported";
+import { FilterOptions } from '../../typesInternal/exported';
 import { optionsParse } from './optionsParse';
 
 describe('optionsParse', () => {

@@ -5,7 +5,7 @@ import {
   SetupOptions,
   FilterOptions,
   TagAliases,
-} from './types/exported';
+} from './typesInternal/exported';
 
 export default EasyFilterParser;
 export {

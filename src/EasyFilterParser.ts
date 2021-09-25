@@ -1,7 +1,11 @@
 import { searchParser } from './searchParser/searchParser';
 import { addAliases } from './searchParser/tagAliases';
-import { ParsedPart } from './types/shapes';
-import { SetupOptions, TagAliases, OptionalParameters } from './types/exported';
+import { ParsedPart } from './types';
+import {
+  SetupOptions,
+  TagAliases,
+  OptionalParameters,
+} from './typesInternal/exported';
 
 /**
  * EasyFilterParser is a minimal setup parser.

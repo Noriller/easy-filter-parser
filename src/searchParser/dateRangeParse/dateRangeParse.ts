@@ -1,9 +1,6 @@
-import {
-  ParsedResult,
-  DateRangePayload,
-  ParsedRange,
-} from '../../types/shapes';
-import { DateFormat } from '../../types/exported';
+import { ParsedRange } from '../../types';
+import { ParsedResult, DateRangePayload } from '../../typesInternal/internal';
+import { DateFormat } from '../../typesInternal/exported';
 import { cleanString } from '../../utils/cleanString';
 import { middleBetweenBracketsRegex } from '../../utils/regexes';
 import { parseDate } from '../../utils/parseDate';
