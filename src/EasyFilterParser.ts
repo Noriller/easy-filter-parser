@@ -65,10 +65,8 @@ function search(
 
   let finalTree: ParsedPart[] = searchTree;
 
-  if (tagAliases !== {}) {
-    finalTree = searchTree.map((node) => {
-      return addAliases(node, tagAliases);
-    });
+  if (Object.keys(tagAliases).length > 0) {
+    finalTree = searchTree.map((node) => addAliases(node, tagAliases));
   }
 
   return { options, searchTree: finalTree };
