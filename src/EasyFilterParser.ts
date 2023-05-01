@@ -52,7 +52,7 @@ export default function EasyFilterParser({
      *
      * @see README for everything that can be passed in the query string.
      */
-    search: (string) => search(string, filterOptions, tagAliases),
+    search: (string: string) => search(string, filterOptions, tagAliases),
   };
 }
 
