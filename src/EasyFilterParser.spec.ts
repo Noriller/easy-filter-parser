@@ -8,7 +8,7 @@ describe('EasyFilter', () => {
     const result = ef.search('bulba');
     expect(result).toEqual({
       options: {},
-      searchTree: [{ childs: undefined, mode: 'OR', payload: 'bulba' }],
+      searchTree: [{ childs: null, mode: 'OR', payload: 'bulba' }],
     });
   });
 
@@ -19,8 +19,8 @@ describe('EasyFilter', () => {
       searchTree: [
         {
           childs: [
-            { childs: undefined, mode: 'OR', payload: 'saur' },
-            { childs: undefined, mode: 'OR', payload: 'petal-blizzard' },
+            { childs: null, mode: 'OR', payload: 'saur' },
+            { childs: null, mode: 'OR', payload: 'petal-blizzard' },
           ],
           mode: 'QUOTE',
           payload: 'saur petal-blizzard',
@@ -35,8 +35,7 @@ describe('EasyFilter', () => {
       options: {},
       searchTree: [
         {
-          aliases: {},
-          childs: [{ childs: undefined, mode: 'OR', payload: 'swords-dance' }],
+          childs: [{ childs: null, mode: 'OR', payload: 'swords-dance' }],
           mode: 'TAG',
           payload: 'swords-dance',
           tag: 'moves.*.move.name',
@@ -51,9 +50,8 @@ describe('EasyFilter', () => {
       options: {},
       searchTree: [
         {
-          aliases: {},
           childs: [
-            { childs: undefined, mode: 'RANGE', payload: null, range: [1, 3] },
+            { childs: null, mode: 'RANGE', payload: null, range: [1, 3] },
           ],
           mode: 'TAG',
           payload: 'range(1,3)',
@@ -69,10 +67,9 @@ describe('EasyFilter', () => {
       options: {},
       searchTree: [
         {
-          aliases: {},
           childs: [
             {
-              childs: undefined,
+              childs: null,
               mode: 'DATE_RANGE',
               payload: null,
               range: [new Date('2020-05-01'), new Date('2021-09-05')],
@@ -93,8 +90,7 @@ describe('EasyFilter', () => {
         options: { limit: 2 },
         searchTree: [
           {
-            aliases: {},
-            childs: [{ childs: undefined, mode: 'OR', payload: 'null' }],
+            childs: [{ childs: null, mode: 'OR', payload: 'null' }],
             mode: 'TAG_NULL',
             payload: 'null',
             tag: 'invalidTag',
@@ -107,7 +103,7 @@ describe('EasyFilter', () => {
       const result = ef.search('sãúr options(normalize)');
       expect(result).toEqual({
         options: { normalize: true },
-        searchTree: [{ childs: undefined, mode: 'OR', payload: 'saur' }],
+        searchTree: [{ childs: null, mode: 'OR', payload: 'saur' }],
       });
     });
 
@@ -118,8 +114,8 @@ describe('EasyFilter', () => {
         searchTree: [
           {
             childs: [
-              { childs: undefined, mode: 'OR', payload: 'saur' },
-              { childs: undefined, mode: 'OR', payload: 'petal-blizzard' },
+              { childs: null, mode: 'OR', payload: 'saur' },
+              { childs: null, mode: 'OR', payload: 'petal-blizzard' },
             ],
             mode: 'QUOTE',
             payload: 'saur petal-blizzard',
@@ -217,6 +213,29 @@ describe('EasyFilter', () => {
             mode: 'TAG',
             payload: '3',
             tag: 'aliasesWithMultipleValues',
+          },
+        ],
+      });
+    });
+  });
+
+  describe('Issues', () => {
+    it('handle a tag inside a quote | EasyFilter#15', () => {
+      const result = ef.search('"tag:value"');
+      expect(result).toEqual({
+        options: {},
+        searchTree: [
+          {
+            childs: [
+              {
+                childs: [{ childs: null, mode: 'OR', payload: 'value' }],
+                mode: 'TAG',
+                payload: 'value',
+                tag: 'tag',
+              },
+            ],
+            mode: 'QUOTE',
+            payload: 'tag:value',
           },
         ],
       });

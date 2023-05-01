@@ -52,7 +52,7 @@ export default function EasyFilterParser({
      *
      * @see README for everything that can be passed in the query string.
      */
-    search: (string) => search(string, filterOptions, tagAliases),
+    search: (string: string) => search(string, filterOptions, tagAliases),
   };
 }
 
@@ -65,10 +65,8 @@ function search(
 
   let finalTree: ParsedPart[] = searchTree;
 
-  if (tagAliases !== {}) {
-    finalTree = searchTree.map((node) => {
-      return addAliases(node, tagAliases);
-    });
+  if (Object.keys(tagAliases).length > 0) {
+    finalTree = searchTree.map((node) => addAliases(node, tagAliases));
   }
 
   return { options, searchTree: finalTree };
