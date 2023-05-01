@@ -218,4 +218,27 @@ describe('EasyFilter', () => {
       });
     });
   });
+
+  describe('Issues', () => {
+    it('handle a tag inside a quote | EasyFilter#15', () => {
+      const result = ef.search('"tag:value"');
+      expect(result).toEqual({
+        options: {},
+        searchTree: [
+          {
+            childs: [
+              {
+                childs: [{ childs: null, mode: 'OR', payload: 'value' }],
+                mode: 'TAG',
+                payload: 'value',
+                tag: 'tag',
+              },
+            ],
+            mode: 'QUOTE',
+            payload: 'tag:value',
+          },
+        ],
+      });
+    });
+  });
 });

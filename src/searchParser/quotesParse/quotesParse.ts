@@ -12,7 +12,7 @@ export function quotesParse(search: string): ParsedResult {
    *  so I'm going to use both and exclude quotes that are part of tags.
    */
   const tagPartRegexAloneBracketQuotes =
-    /(?<tags>\S+:(?<tagvalue>(?<quotetag>["']).*?\k<quotetag>|\(.*?\)|.*?(?=(\s|$))))/gi;
+    /(?<tags>(?!["'])\S+:(?<tagvalue>(?<quotetag>["']).*?\k<quotetag>|\(.*?\)|.*?(?=(\s|$))))/gi;
 
   const quotesPartFound = search.match(quotePartRegex) || false;
 
